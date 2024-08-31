@@ -8,18 +8,21 @@ import kotlinx.serialization.json.Json
 import nacholab.cv.pdf.model.MainCV
 import nacholab.cv.pdf.theme.MainTheme
 
-suspend fun main() {
+suspend fun main(args: Array<String>) {
 
-    val client = HttpClient(CIO)
-    val response: HttpResponse = client.get("https://ignacio.guerendiain.com.ar/assets/db.test.json")
-    val dbRaw = response.bodyAsText()
-    val jsonHandler = Json { ignoreUnknownKeys = true }
-    val cvData = jsonHandler.decodeFromString<MainCV>(dbRaw)
+    if (args.isEmpty()) {
+        println("Usage: cv2pdf dbURL [output] (will default to output.pdf)")
+    } else {
+        val dbURL = args[0]
+        val output = args.getOrNull(1) ?: "./output.pdf"
 
-    CV2PDF(
-        outputFile = "/home/iguerendiain/Cosas/output.pdf",
-        theme = MainTheme,
-        cvData = cvData
-    )
+        val client = HttpClient(CIO)
+        val response: HttpResponse = client.get(dbURL)
+        val dbRaw = response.bodyAsText()
+        val jsonHandler = Json { ignoreUnknownKeys = true }
+        val cvData = jsonHandler.decodeFromString<MainCV>(dbRaw)
 
+        CV2PDF(outputFile = output, theme = MainTheme, cvData = cvData)
+    }
 }
+
