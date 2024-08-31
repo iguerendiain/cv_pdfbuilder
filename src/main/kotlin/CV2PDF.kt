@@ -14,8 +14,7 @@ import java.io.FileOutputStream
 fun CV2PDF(
     outputFile: String,
     theme: Theme,
-    cvData: MainCV,
-    language: String
+    cvData: MainCV
 ){
 
     val document = Document(
@@ -25,6 +24,8 @@ fun CV2PDF(
         theme.MARGIN_VERTICAL,
         theme.MARGIN_VERTICAL
     )
+
+    val language = cvData.defaultLanguage
 
     val pdfWriter = PdfWriter.getInstance(document, FileOutputStream(outputFile))
 

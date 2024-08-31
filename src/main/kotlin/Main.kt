@@ -19,8 +19,7 @@ suspend fun main() {
     CV2PDF(
         outputFile = "/home/iguerendiain/Cosas/output.pdf",
         theme = MainTheme,
-        cvData = cvData,
-        language = "en"
+        cvData = cvData
     )
 
 }
