@@ -25,7 +25,7 @@ fun buildHeaderFooter(
                 Chunk("${navBarData.title[language]} // ").apply { font = theme.buildDefaultHeaderFont() },
                 Chunk("+54 11 3130 1701").apply {
                     font = theme.buildLinkHeaderFont()
-                    setAnchor("cel:+541131301701")
+                    setAnchor("tel:+541131301701")
                 },
                 Chunk(" // ").apply { font = theme.buildDefaultHeaderFont() },
                 Chunk(contactData.email).apply {

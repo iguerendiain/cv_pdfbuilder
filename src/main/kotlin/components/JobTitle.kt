@@ -6,9 +6,16 @@ import com.lowagie.text.Phrase
 import nacholab.cv.i18n.i18n
 import nacholab.cv.pdf.theme.Theme
 import nacholab.cv.pdf.tools.toMonth
-import nacholab.cv.pdf.tools.toYear
 
-fun JobTitle(document: Document, theme: Theme, language: String, name: String?, url: String?, from: Long, to: Long?) {
+fun JobTitle(
+    document: Document,
+    theme: Theme,
+    language: String,
+    name: String?,
+    url: String?,
+    from: List<Int>,
+    to: List<Int>?
+) {
     Phrase()
         .apply {
             arrayOf(
@@ -24,16 +31,16 @@ fun JobTitle(document: Document, theme: Theme, language: String, name: String?, 
                 Chunk(
                     if (to != null){
                         "%s %s ~ %s %s".format(
-                            from.toMonth(language),
-                            from.toYear(),
-                            to.toMonth(language),
-                            to.toYear()
+                            from[0].toMonth(language),
+                            from[1],
+                            to[0].toMonth(language),
+                            to[1]
                         )
                     }else{
                         "%s %s %s".format(
                             "since".i18n(language),
-                            from.toMonth(language),
-                            from.toYear()
+                            from[0].toMonth(language),
+                            from[1]
                         )
                     }
                 ).apply { font = theme.buildDefaultFont() },

@@ -11,7 +11,7 @@ import nacholab.cv.pdf.theme.MainTheme
 suspend fun main() {
 
     val client = HttpClient(CIO)
-    val response: HttpResponse = client.get("https://ignacio.guerendiain.com.ar/assets/db.json")
+    val response: HttpResponse = client.get("https://ignacio.guerendiain.com.ar/assets/db.test.json")
     val dbRaw = response.bodyAsText()
     val jsonHandler = Json { ignoreUnknownKeys = true }
     val cvData = jsonHandler.decodeFromString<MainCV>(dbRaw)
