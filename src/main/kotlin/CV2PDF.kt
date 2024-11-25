@@ -58,7 +58,6 @@ fun CV2PDF(
     pdfWriter.info.put(PdfName.CREATOR, PdfString(Document.getVersion()))
 
     WorkExperience(document, cvData.cv.work, language, theme)
-    document.newPage()
     TechnicalSkills(document, cvData.cv.tech, language, theme)
     Spacer(document, 15f)
     Languages(document, cvData.cv.languages, language, theme)
